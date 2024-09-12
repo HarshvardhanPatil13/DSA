@@ -1,0 +1,35 @@
+// we can also do it using switch case , but i found this showing less complexity on leetcode.
+
+class Solution {
+    public void sortColors(int[] nums) {
+
+        int start = 0;
+        int end = nums.length - 1;
+        int middle = 0;
+
+        while (middle <= end) {
+
+      // case 0 - swap with element at start pointer , start++ , mid++
+            if (nums[middle] == 0) {
+                int temp = nums[start];
+                nums[start] = nums[middle];
+                nums[middle] = temp;
+                start++;
+                middle++;
+            } 
+    // case 1 - no swapping , mid++
+            else if (nums[middle] == 1) {
+                middle++;
+            } 
+    // case 2 - swap with end pointer , end--
+            else if (nums[middle] == 2) {
+                int temp = nums[middle];
+                nums[middle] = nums[end];
+                nums[end] = temp;
+                end--;
+
+            }
+
+        }
+    }
+}
