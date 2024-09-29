@@ -1,0 +1,36 @@
+
+
+class Solution {
+    public void reverseString(char[] s) {
+       //1. Two pointer approach
+       int n=s.length;
+        for(int i=0;i<n/2;i++)
+        {
+            char tmp=s[i];
+            s[i]=s[n-1-i];
+            s[n-1-i]=tmp;
+        }
+
+        return;
+
+      //2. Reverse string using stack
+        // Stack<Character> s1 = new Stack<>();
+
+        // int idx=0;
+        // while(idx < s.length )
+        // {
+        //     s1.push(s[idx]);
+        //     idx++;
+        // }
+
+        // idx=0;
+        // while(!s1.isEmpty())
+        // {
+        //     s[idx]=s1.pop();
+        //     idx++;
+        // }
+
+       
+   
+    }
+}
