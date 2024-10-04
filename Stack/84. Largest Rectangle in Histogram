@@ -1,0 +1,68 @@
+/*
+    3 steps to solve this problem 
+        1. Find next smaller right
+        2. Find next smaller left
+        3. Find current area and comapre it wiht max area to find max area
+*/
+
+
+class Solution {
+    public int largestRectangleArea(int[] heights) {
+
+        int maxArea=0;
+        int nsr[]=new int[heights.length];
+        int nsl[]=new int[heights.length];
+        int n= heights.length;
+
+        // Next smallest right
+        Stack<Integer> s = new Stack<>();
+
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!s.isEmpty()  && heights[s.peek()]>= heights[i])
+            {
+                s.pop();
+            }
+
+            if(s.isEmpty())
+            {
+                nsr[i]= n;
+            }
+            else{
+                nsr[i]=s.peek();
+            }
+            s.push(i);
+        }
+
+        // next smallest left
+        s = new Stack<>();
+
+        for(int i=0;i<n;i++)
+        {
+            while(!s.isEmpty()  && heights[s.peek()]>= heights[i])
+            {
+                s.pop();
+            }
+
+            if(s.isEmpty())
+            {
+                nsl[i]= -1;
+            }
+            else{
+                nsl[i]=s.peek();
+            }
+            s.push(i);
+        }
+
+        // area = width * height 
+        for(int i=0;i<n;i++)
+        {
+            int height=heights[i];
+            int width= nsr[i] - nsl[i] - 1;
+            int currArea = height * width ;
+            maxArea = Math.max(currArea , maxArea);
+        }
+
+        return maxArea;
+    }
+}
