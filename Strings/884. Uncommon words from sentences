@@ -1,0 +1,25 @@
+class Solution {
+    public String[] uncommonFromSentences(String s1, String s2) {
+
+        HashMap<String , Integer> wordcount = new HashMap<>();
+      String sn = s1+" "+ s2;
+      String snarr[]= sn.split(" ");
+
+      for(String word : snarr)
+      {
+        wordcount.put(word , wordcount.getOrDefault(word,0)+1);
+
+      }
+        List<String> uncom = new ArrayList<>();
+      for(String word : wordcount.keySet())
+      {
+            if(wordcount.get(word)==1)
+            {
+                uncom.add(word);
+            }
+      }
+
+      return uncom.toArray(new String[0]);
+
+    }
+}
