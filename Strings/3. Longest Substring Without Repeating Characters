@@ -1,0 +1,32 @@
+
+
+// 1) Created a hashset 
+// 2) Declared left , right , maxlen 
+// 3) Right pointer iterates the string and checks at every iteration whether the cureent pointed element is in the set.
+// 4) If right pointer element is in the set then , left pointer is moved towards right until the similar element is removed .
+// 5) Then again iteration is continued till last element
+
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> charset = new HashSet<>();
+        int left=0;
+        int maxlen=0;
+
+        for(int right =0;right<s.length();right++)
+        {
+
+            while(charset.contains(s.charAt(right)))
+            {
+                charset.remove(s.charAt(left));
+                left++;
+            }
+
+            charset.add(s.charAt(right));
+            maxlen=Math.max(maxlen,right-left+1);
+
+        }
+
+        return maxlen;
+    }
+}
