@@ -1,0 +1,42 @@
+/*
+  Example Walkthrough:
+Input: a = 426, b = 486, c = 652
+Digits in a: 4, 2, 6 → digits[0] = [0,0,1,0,1,0,1,0,0,0]
+Digits in b: 4, 8, 6 → digits[1] = [0,0,0,0,1,0,1,0,1,0]
+Digits in c: 6, 5, 2 → digits[2] = [0,0,1,0,0,1,1,0,0,0]
+Common digits: Check each digit:
+Digit 2: Present in a, c, but not b.
+Digit 4: Present in a, b, but not c.
+Digit 6: Present in a, b, c → Return 6.
+*/
+
+
+static int CommonDigit(int a, int b, int c) throws java.lang.Exception {
+    // Array to store digit counts for each number
+    int[][] digits = new int[3][10]; // [number][digit] - for a, b, c
+    
+    // Extract digits of a
+    while (a > 0) {
+        digits[0][a % 10] = 1; // Mark digit as present
+        a /= 10;
+    }
+    // Extract digits of b
+    while (b > 0) {
+        digits[1][b % 10] = 1;
+        b /= 10;
+    }
+    // Extract digits of c
+    while (c > 0) {
+        digits[2][c % 10] = 1;
+        c /= 10;
+    }
+    
+    // Check for common digits
+    for (int digit = 0; digit <= 9; digit++) {
+        if (digits[0][digit] == 1 && digits[1][digit] == 1 && digits[2][digit] == 1) {
+            return digit; // Return the first common digit found
+        }
+    }
+    
+    return -1; // Should not reach here given the assumption
+}
